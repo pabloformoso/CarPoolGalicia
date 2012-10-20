@@ -39,13 +39,17 @@
 	function HacerLogin() {
 		console.log("Realizando login");
 		$.ajax({
-  		type: "POST",
-  		url: "http://192.168.11.100:3000/api/users/sign_in",
-  		data: { 'user[email]': $('#email').val(), 'user[password]':$('#password').val() }
+	  		type: "POST",
+	  		url: "http://192.168.11.100:3000/api/users/sign_in",
+	  		data: { 'user[email]': $('#email').val(), 'user[password]':$('#password').val() }
 		}).success(function( msg ) {
-			console.log(msg);
-  			$.cookie("usuario", $("#usuario").val());
+			console.log("Login OK" + msg);
+  			$.cookie("usuario", $("#email").val());
   			$.mobile.changePage("#home");
+  			console.log("Login FIN");
+  			var usuario = $.cookie("usuario");
+			console.log("Usuario guardado? = ." + usuario + ".");
+			window.location.href = "index.html";
 		});
 	}
 	 	$(document).bind('pageinit', function(){
@@ -66,25 +70,27 @@
 			});
 
 			$("#btnEntrar").click(function(){
-				console.log("Aquí irá la llamada al backend - servicio de login");
-
 				if ($("#usuario").val() != "" && $("#password").val() != ""){
+					console.log("Haciendo login");
 					HacerLogin();
 				}else{
+					console.log("No se hace login");
 					alert('Debes introducir tu nombre de usuario y contraseña');
 				}
 			});
 
-		$.mobile.showPageLoadingMsg("a", "Cargando...");
-		$.getJSON('http://192.168.11.100:3000/api/pools', function(data) {
-			console.log("Recibidos pools");
-			$("#listadoPools li").remove();
-			$.each(data, function(i, pool){
-				$("#listadoPools").append('<li><a href="viaje.html" rel="external">'+pool.start_address + " - " + pool.destination_address+'</a></li>');	
+			$.getJSON('http://192.168.11.100:3000/api/pools', function(data) {
+				try{
+					console.log("Recibidos pools");
+					$("#listadoPools li").remove();
+					$.each(data, function(i, pool){
+						$("#listadoPools").append('<li><a href="viaje.html" rel="external">'+pool.start_address + " - " + pool.destination_address+'</a></li>');	
+					});
+					$('#listadoPools').listview('refresh');
+				}catch(err){
+					console.log("error js: " + err);
+				}
 			});
-			$('#listadoPools').listview('refresh');
-			$.mobile.hidePageLoadingMsg();
-		});
 
 		});
 	</script>
@@ -130,7 +136,7 @@
 
 			<div id="divBotonesPool" data-role="controlgroup" data-type="horizontal" style="width: 100%" class="ui-grid-a" >
 				<a href="pools-nuevo.html" data-role="button" data-icon="plus" rel="external" class="ui-block-a" style="height: 39px">Añadir</a>
-				<a href="pools-gestionar.html" data-role="button" data-icon="arrow-r" rel="external" class="ui-block-b" style="height: 39px">Gestionar</a>				
+				<a href="mis-pools.html" data-role="button" data-icon="arrow-r" rel="external" class="ui-block-b" style="height: 39px">Gestionar</a>				
 			</div>
 
 			<h3>Pools más recientes</h3>
