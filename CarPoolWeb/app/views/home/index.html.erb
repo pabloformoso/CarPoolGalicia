@@ -1,4 +1,6 @@
+<br />
 <h2>Siguientes salidas!!!</h2>
+<h4>Coge tu sitio y ahorra, no contamines y haz amigos.</h4>
 <br />
 <table class="table table-striped">
   <thead>
@@ -10,6 +12,9 @@
       <th>Conductor</th>
       <th>Plazas</th>
       <th>Disponibles</th>
+      <% if current_user %>
+        <th>Unete</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -22,6 +27,15 @@
         <td><%= carpool.driver.email %></td>
         <td><%= carpool.seats %></td>
         <td><%= carpool.seats_available %></td>
+        <% if current_user %>
+          <td>
+            <% if carpool.is_compleate? %>
+              <%= link_to "Unete!", join_carpool_path(carpool) %>
+            <% else %>
+              Lleno
+            <% end %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

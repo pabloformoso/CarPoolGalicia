@@ -1,4 +1,5 @@
 class CarpoolsController < ApplicationController
+  before_filter :authenticate_user!, :only => [:join]
   # GET /carpools
   # GET /carpools.json
   def index
@@ -80,4 +81,11 @@ class CarpoolsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def join
+    @carpool = Carpool.find(params[:id])
+    @carpool.users << current_user
+    redirect_to root_path
+  end
+  
 end

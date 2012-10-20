@@ -39,12 +39,11 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <%= link_to "CarPool Galicia", root_path, :class => "brand" %>
+          <%= link_to "CarPools", root_path, :class => "brand" %>
           <div class="container nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Pool", carpools_path  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+              <li><%= link_to "Listado de Pools", carpools_path  %></li>
+              <li><%= link_to "Nuestros viajeros", travelers_path  %></li>
             </ul>
           </div>
         </div>
@@ -58,16 +57,25 @@
           </div>
           <div class="span3">
             <div class="well sidebar-nav">
-              <ul class="nav nav-list">
-                <li><%= link_to "Login", new_user_session_path %></li>
-                <li><%= link_to "Registrate", new_user_registration_path %></li>
-              </ul>
+              <% if !current_user %>
+                <ul class="nav nav-list">
+                  <li><%= link_to "Login", new_user_session_path %></li>
+                  <li><%= link_to "Registrate", new_user_registration_path %></li>
+                </ul>
+              <% else %>
+                Hola <%= current_user.name %> <%= current_user.lastname %><br />
+                Estas apuntado a <%= current_user.number_of_pools %>
+                <br />
+                <br />
+                <%= link_to "[X] Salir", destroy_user_session_path %>
+              <% end %>
             </div><!--/.well -->
+            <%= image_tag "carpool.png" %>
           </div><!--/span-->
         </div><!--/row-->
 
       <footer>
-        <p>&copy; Company 2012</p>
+        <p>&copy; CarPool 2012</p>
       </footer>
 
     </div> <!-- /container -->
