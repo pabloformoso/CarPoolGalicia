@@ -37,7 +37,8 @@
 		$.each( data.markers, function(i, marker) {
 			$('#map_canvas').gmap('addMarker', { 
 				'position': new google.maps.LatLng(marker.latitude, marker.longitude), 
-				'bounds': true 
+				'bounds': true ,
+				'icon': 'img/sportscar.png'
 			}).click(function() {
 				console.log('Hago click');
 				$('#map_canvas').gmap('openInfoWindow', { 'content': marker.content }, this);
@@ -46,12 +47,59 @@
 	});
 	});
 	}
-	
+	function muestraRuta() {
+		$('#map_canvas').gmap('displayDirections', { 'origin': 'Goteborg, Sweden', 'destination': 'Stockholm, Sweden', 'travelMode': google.maps.DirectionsTravelMode.DRIVING }, { 'panel': null }, function(result, status) {
+            
+	}); 
+	}
+
+	function recuperaPosicionUsuario(){
+		console.log('recuperando posicion usuario');
+   if (navigator.geolocation !== null)
+	   {
+	      var options;
+	      navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError, options);
+	   }
+   else {
+      alert("HTML5 geolocation is not supported.");
+   }
+}
+
+function geolocationSuccess(position)
+{
+   //Extract information about the users current position:
+   var time = position.timestamp;
+   var coordinates = position.coords;
+
+   //Retrieve geographic information about the GPS fix:
+   var lat = coordinates.latitude;
+   var lon = coordinates.longitude;
+   var alt = coordinates.altitude;
+   var acc = coordinates.accuracy;
+   var altAcc = coordinates.altitudeAccuracy;
+   var head = coordinates.heading;
+   var speed = coordinates.speed;
+
+   $('#map_canvas').gmap('addMarker', { 
+				'position': new google.maps.LatLng(lat, lon), 
+				'bounds': true ,
+				'icon': 'img/usuario.png'
+			});
+
+   
+}
+
+function geolocationError(error)
+{
+   alert("An unexpected error occurred [" + error.code + "]: " + error.message);
+}
 	console.log('cargando mapa');
-	$(document).ready(function() {
+	$(document).bind("pageinit", function() {
 		$('#container').css('height',screen.height);
 		$('#map_canvas').css('height',screen.height);
 	 	cargaMapa();
+	 	muestraRuta();
+	 	recuperaPosicionUsuario();
 	});
 	</script>
 
