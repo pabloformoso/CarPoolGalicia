@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<widget xmlns:rim="http://www.blackberry.com/ns/widgets" version="1.7.0" rim:header="RIM-Widget:rim/widget" xmlns="http://www.w3.org/ns/widgets">
+  <rim:navigation mode="focus" />
+  <name>CarPoolGalicia</name>
+  <description>Comparte coche, ahorra dinero y sé feliz</description>
+  <author href="https://www.carpoolgalicia.com">CarPoolGalicia</author>
+  <icon src="icon.png" />
+  <icon src="icon.png" rim:hover="true" />
+  <rim:loadingScreen backgroundImage="images\background.png" foregroundImage="images\loading1.gif" onFirstLaunch="true" onLocalPageLoad="true">
+    <rim:transitionEffect type="fadeIn" />
+  </rim:loadingScreen>
+  <content src="index.htm" />
+  <access subdomains="true" uri="*"/>
+  <access subdomains="true" uri="http://gstatic.com"/>
+  <access subdomains="true" uri="http://google.com"/>
+  <access subdomains="true" uri="http://googleapis.com"/>
+  <access uri="http://chart.apis.google.com" subdomains="true" />
+
+</widget>

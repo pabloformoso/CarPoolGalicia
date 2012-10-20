@@ -1,3 +1,4 @@
 var startApp = function() {
-  // alert('started');
+	console.log("CarPoolGalicia - Mobile - starting");
+	//alert('started');
 };

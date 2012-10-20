@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CarPoolGalicia</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+	<link rel="stylesheet"  href="css/jquery.mobile.structure.css" />
+	<link rel="stylesheet" href="css/jquery.mobile.theme.css" />
+	<link rel="stylesheet" href="css/application.css" />
+	<script>
+		var userAgent = navigator.userAgent + '';
+		if (userAgent.indexOf('iPhone') > -1) {
+			document.write('<script src="js/lib/cordova-iphone.js"></sc' + 'ript>');
+			document.write('<script src="js/app/ios.js"></sc' + 'ript>');
+			document.write('<link rel="stylesheet" href="css/ios.css" />');
+			var mobile_system = 'iphone';
+		} else if (userAgent.indexOf('Android') > -1) {
+			document.write('<script src="js/lib/cordova-android.js"></sc' + 'ript>');
+			document.write('<script src="js/app/android.js"></sc' + 'ript>');
+			document.write('<link rel="stylesheet" href="css/android.css" />');
+			var mobile_system = 'android';
+		} else {
+			var mobile_system = '';
+		}
+
+
+
+	</script>
+	<script src="js/lib/jquery.js"></script>
+	<!-- your scripts here -->
+	<script src="js/app/app.js"></script>
+	<script src="js/app/bootstrap.js"></script>
+	<script src="js/lib/jquery.mobile.js"></script>
+	<script src="js/lib/jquery.cookie.js"></script>
+
+	<script>
+
+	 	$(document).bind('pageinit', function(){
+
+			console.log("Ajustes init");
+
+			$("#btnOlvidar").click(function(){
+				console.log("Olvidar...");
+				$.cookie("usuario", "");
+				window.location.href = "index.html";
+			});
+		});
+	</script>
+
+</head>
+<body>
+	<!-- login -->
+	<div data-role="page">
+		<div data-role="header">
+			<a href="index.html" data-icon="home" rel="external">Inicio</a>
+			<h1>CarPoolGalicia</h1>
+		</div>
+		<div data-role="content">
+			<a id="btnPerfil" href="perfil.html" data-role="button" rel="external" data-icon="arrow-r" data-iconpos="right">Editar mis datos</a>
+			<a id="btnOlvidar" href="#" data-role="button" data-icon="delete" data-iconpos="right">Olvidar mis datos</a>
+			<a id="btnPrivacidad" href="privacidad.html" data-role="button" data-icon="info" data-iconpos="right">Política de privacidad</a>
+
+		</div>
+		<div data-role="footer" data-theme="c" data-position="fixed">
+			<h4>&copy; 2012 - CarPoolGalicia</h4>
+		</div>	
+	</div><!-- /login -->
+
+</body>
+</html>

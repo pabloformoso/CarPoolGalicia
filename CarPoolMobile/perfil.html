@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CarPoolGalicia</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+	<link rel="stylesheet"  href="css/jquery.mobile.structure.css" />
+	<link rel="stylesheet" href="css/jquery.mobile.theme.css" />
+	<link rel="stylesheet" href="css/application.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<script>
+		var userAgent = navigator.userAgent + '';
+		if (userAgent.indexOf('iPhone') > -1) {
+			document.write('<script src="js/lib/cordova-iphone.js"></sc' + 'ript>');
+			document.write('<script src="js/app/ios.js"></sc' + 'ript>');
+			document.write('<link rel="stylesheet" href="css/ios.css" />');
+			var mobile_system = 'iphone';
+		} else if (userAgent.indexOf('Android') > -1) {
+			document.write('<script src="js/lib/cordova-android.js"></sc' + 'ript>');
+			document.write('<script src="js/app/android.js"></sc' + 'ript>');
+			document.write('<link rel="stylesheet" href="css/android.css" />');
+			var mobile_system = 'android';
+		} else {
+			var mobile_system = '';
+		}
+	</script>
+	<script src="js/lib/jquery.js"></script>
+	<!-- your scripts here -->
+	<script src="js/app/app.js"></script>
+	<script src="js/app/bootstrap.js"></script>
+	<script src="js/lib/jquery.mobile.js"></script>
+	<script src="js/jqueryui-map.js"></script>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+	<script>
+		/*jQuery(window).load(function() {
+		    var altoMapa = screen.height;
+			altoMapa -= $('#header').height();
+			altoMapa -= $('#cuerpo').height();
+			altoMapa -= $('#footer').height();
+			$('#map_canvas').css('height', altoMapa + 'px');
+		});*/
+
+		function cargaMapa() {
+			$('#map_canvas').gmap().bind('init', function() { 
+				$.getJSON('http://127.0.0.1:9910/CarPoolGalicia/CarPoolMobile/markers.json', function(data) { 
+					$.each( data.markers, function(i, marker) {
+						$('#map_canvas').gmap('addMarker', { 
+							'position': new google.maps.LatLng(marker.latitude, marker.longitude), 
+							'bounds': true ,
+							'icon': 'img/sportscar.png'
+						}).click(function() {
+							console.log('Hago click');
+							$('#map_canvas').gmap('openInfoWindow', { 'content': marker.content }, this);
+						});
+					});
+				});
+			});
+		}
+
+		function recuperaPosicionUsuario(){
+			console.log('recuperando posicion usuario');
+			if (navigator.geolocation !== null){
+				  var options;
+				  navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError, options);
+			} else {
+			  alert("HTML5 geolocation is not supported.");
+			}
+		}
+
+		function geolocationSuccess(position){
+			//Extract information about the users current position:
+			var time = position.timestamp;
+			var coordinates = position.coords;
+
+			//Retrieve geographic information about the GPS fix:
+			var lat = coordinates.latitude;
+			var lon = coordinates.longitude;
+			var alt = coordinates.altitude;
+			var acc = coordinates.accuracy;
+			var altAcc = coordinates.altitudeAccuracy;
+			var head = coordinates.heading;
+			var speed = coordinates.speed;
+
+			$('#map_canvas').gmap('addMarker', { 
+				'position': new google.maps.LatLng(lat, lon), 
+				'bounds': true ,
+				'icon': 'img/usuario.png'
+			});
+		}
+
+		function geolocationError(error){
+			alert("An unexpected error occurred [" + error.code + "]: " + error.message);
+		}
+		
+		/*console.log('cargando mapa');
+		$(document).bind("pageinit", function() {
+			$('#container').css('height',screen.height);
+			$('#map_canvas').css('height',screen.height);
+			
+			muestraRuta();
+			recuperaPosicionUsuario();
+		});*/
+
+		$(document).bind('pageinit', function(){
+			$("#btnRegistro").click(function(){
+				window.location = 'registro.html';
+			});
+
+			$("#perfil-editar").click(function(){
+				if ($(this).hasClass('editando')) {
+					$('.form-text').attr('disabled', '');
+					$('#perfil-editar .ui-btn-text').html('Editar');
+					$('#perfil-editar .ui-icon').addClass('ui-icon-arrow-d');
+					$('#perfil-editar .ui-icon').removeClass('ui-icon-check');
+					$(this).removeClass('editando');
+				} else {
+					$('.form-text').removeAttr('disabled');
+					$('#perfil-editar .ui-btn-text').html('Guardar');
+					$('#perfil-editar .ui-icon').removeClass('ui-icon-arrow-d');
+					$('#perfil-editar .ui-icon').addClass('ui-icon-check');
+					$(this).addClass('editando');
+				}
+			});
+
+			cargaMapa();
+		});
+	</script>
+
+</head>
+<body>
+	<div data-role="page" class="perfil">
+		<div data-role="header" id="header">
+			<a href="index.html" data-icon="home" rel="external">Inicio</a>
+			<h1>CarPoolGalicia</h1>
+			<a id="perfil-editar" data-icon="arrow-d" data-iconpos="right">Editar</a>
+		</div>
+		<div data-role="content" id="cuerpo">
+			
+			<div class="ui-grid-b">
+				<div class="ui-block-a"><img style="max-width: 100%; padding-right: 2px; box-sizing: border-box;" class="img-perfil" src="img/sin-imagen-perfil.jpg" /></div>
+				<div class="ui-block-b" style="width: 65%;">
+					<input type="text" disabled id="nombre" name="nombre" value="Rubén Illodo Brea" class="form-text titulo" />
+					<input type="text" disabled id="email" name="email" value="rubenillodobrea@gmail.com" class="form-text" />
+					<input type="text" disabled id="telefono" name="telefono" value="619803336" class="form-text" />
+				</div>
+			</div>
+
+			<div id="map_canvas" style="width:100%; height: 200px;" class="map rounded"></div>
+
+		</div>
+		<div data-role="footer" data-theme="c" data-position="fixed">
+			<h4>&copy; 2012 - CarPoolGalicia</h4>
+		</div>	
+	</div><!-- /page -->
+</body>
+</html>
