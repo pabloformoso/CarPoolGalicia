@@ -15,8 +15,5 @@
   <access subdomains="true" uri="http://google.com"/>
   <access subdomains="true" uri="http://googleapis.com"/>
   <access uri="http://chart.apis.google.com" subdomains="true" />
-  
-
-  <rim:navigation mode="focus"/>
 
 </widget>
