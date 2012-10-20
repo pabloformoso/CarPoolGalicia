@@ -6,6 +6,7 @@ gem 'sqlite3'
 gem 'devise'
 gem "twitter-bootstrap-rails"
 gem 'jquery-rails'
+gem "meta_search"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

@@ -1,0 +1,44 @@
+<%- model_class = Carpool -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:start_address) %></th>
+      <th><%= model_class.human_attribute_name(:destination_address) %></th>
+      <th><%= model_class.human_attribute_name(:departure) %></th>
+      <th><%= model_class.human_attribute_name(:driver_id) %></th>
+      <th><%= model_class.human_attribute_name(:seats) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @carpools.each do |carpool| %>
+      <tr>
+        <td><%= link_to carpool.id, carpool_path(carpool) %></td>
+        <td><%= carpool.start_address %></td>
+        <td><%= carpool.destination_address %></td>
+        <td><%= carpool.departure %></td>
+        <td><%= carpool.driver_id %></td>
+        <td><%= carpool.seats %></td>
+        <td><%=l carpool.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_carpool_path(carpool), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      carpool_path(carpool),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_carpool_path,
+            :class => 'btn btn-primary' %>
