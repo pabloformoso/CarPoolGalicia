@@ -1,0 +1,29 @@
+<h2>Siguientes salidas!!!</h2>
+<br />
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Origen</th>
+      <th>Destino</th>
+      <th>Salida</th>
+      <th>Conductor</th>
+      <th>Plazas</th>
+      <th>Disponibles</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @carpools.each do |carpool| %>
+      <tr>
+        <td><%= link_to carpool.id, carpool_path(carpool) %></td>
+        <td><%= carpool.start_address %></td>
+        <td><%= carpool.destination_address %></td>
+        <td><%= carpool.departure.strftime("%d/%m/%y %H:%M") %></td>
+        <td><%= carpool.driver.email %></td>
+        <td><%= carpool.seats %></td>
+        <td><%= carpool.seats_available %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
