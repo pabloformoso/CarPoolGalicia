@@ -25,7 +25,7 @@
         <td><%= carpool.start_address %></td>
         <td><%= carpool.destination_address %></td>
         <td><%= carpool.departure.strftime("%d/%m/%y %H:%M") %></td>
-        <td><%= carpool.driver.email %></td>
+        <td><%= carpool.driver.email if carpool.driver %></td>
         <td><%= carpool.seats %></td>
         <td><%= carpool.seats_available %></td>
         <td><%= carpool.cost %></td>

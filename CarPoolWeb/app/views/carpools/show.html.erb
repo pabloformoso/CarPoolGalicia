@@ -11,7 +11,7 @@
   <dt><strong><%= model_class.human_attribute_name(:departure) %>:</strong></dt>
   <dd><%= @carpool.departure %></dd>
   <dt><strong><%= model_class.human_attribute_name(:driver_id) %>:</strong></dt>
-  <dd><%= @carpool.driver.email %></dd>
+  <dd><%= @carpool.driver.email if @carpool.driver %></dd>
   <dt><strong><%= model_class.human_attribute_name(:seats) %>:</strong></dt>
   <dd><%= @carpool.seats %></dd>
   <dt><strong>Viajeros:</strong></dt>
