@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CarPoolGalicia</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+	<link rel="stylesheet"  href="css/jquery.mobile.structure.css" />
+	<link rel="stylesheet" href="css/jquery.mobile.theme.css" />
+	<link rel="stylesheet" href="css/application.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<script>
+		var userAgent = navigator.userAgent + '';
+		if (userAgent.indexOf('iPhone') > -1) {
+			document.write('<script src="js/lib/cordova-iphone.js"></sc' + 'ript>');
+			document.write('<script src="js/app/ios.js"></sc' + 'ript>');
+			document.write('<link rel="stylesheet" href="css/ios.css" />');
+			var mobile_system = 'iphone';
+		} else if (userAgent.indexOf('Android') > -1) {
+			document.write('<script src="js/lib/cordova-android.js"></sc' + 'ript>');
+			document.write('<script src="js/app/android.js"></sc' + 'ript>');
+			document.write('<link rel="stylesheet" href="css/android.css" />');
+			var mobile_system = 'android';
+		} else {
+			var mobile_system = '';
+		}
+	</script>
+	<script src="js/lib/jquery.js"></script>
+	<!-- your scripts here -->
+	<script src="js/app/app.js"></script>
+	<script src="js/app/bootstrap.js"></script>
+	<script src="js/lib/jquery.mobile.js"></script>
+
+	<script>
+		$(document).bind('pageinit', function(){
+			var idUsuario = 2;
+
+			var propios = new Array();
+			var deOtros = new Array();
+			$.getJSON('http://192.168.11.100:3000/api/pool/user/' + idUsuario, function(data) { 
+				if (data.error !== undefined) {
+					$('#cuerpo').html('<p>Parece que no has creado ni te has unido a ningún pool...</p>')
+					return;
+				}
+
+				$.each(data, function(i, pool) {
+					if (pool.driver_info.id === idUsuario) {
+						propios.push(pool);
+					} else {
+						deOtros.push(pool);
+					}
+				});
+				
+				$.each(propios, function(i, pool) {
+					$('#lista-propios').append('<li><a href="viaje.html" data-icon="arrow-r">' + pool.start_address + ' - ' + pool.destination_address +'</a></li>');
+				});
+
+				$.each(deOtros, function(i, pool) {
+					$('#lista-deotros').append('<li><a href="viaje.html" data-icon="arrow-r">' + pool.start_address + ' - ' + pool.destination_address +'</a></li>');
+				});
+
+				$('#lista-propios').listview('refresh');
+				$('#lista-deotros').listview('refresh');
+
+				if (propios.length <= 0) {
+					$('#propios-titulo').remove();
+				}
+				if (deOtros.length <= 0) {
+					$('#deotros-titulo').remove();
+				}
+			});
+		});
+	</script>
+
+</head>
+<body>
+	<div data-role="page" class="perfil">
+		<div data-role="header" id="header">
+			<a href="index.html" data-icon="home" rel="external">Inicio</a>
+			<h1>CarPoolGalicia</h1>
+		</div>
+		<div data-role="content" id="cuerpo">
+			
+			<h2 id="propios-titulo">Pools propios</h2>
+			<ul data-role="listview" data-inset="true" id="lista-propios"></ul>
+			<h2 id="deotros-titulo">Pools a los que me he unido</h2>
+			<ul data-role="listview" data-inset="true" id="lista-deotros"></ul>
+
+		</div>
+		<div data-role="footer" data-theme="c" data-position="fixed">
+			<h4>&copy; 2012 - CarPoolGalicia</h4>
+		</div>	
+	</div><!-- /page -->
+</body>
+</html>
