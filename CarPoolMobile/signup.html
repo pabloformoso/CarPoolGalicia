@@ -48,7 +48,8 @@
   		type: "POST",
   		url: "http://192.168.11.100:3000/api/users",
   		data: { 'user[name]': $('#name').val(), 'user[city]':$('#city').val(), 'user[password]':$('#password').val(),'user[password_confirmation]':$('#password').val(),'user[lastname]':$('#lastname').val(),'user[phone_number]':$('#phone_number').val(), 'user[email]':$('#email').val() }
-		}).done(function( msg ) {
+		}).success(function( msg ) {
+			console.log(msg);
   			alert( "Bienvenido: " + $('#name').val());
 });
 
@@ -66,7 +67,7 @@
 		<div data-role="content">
 			
 			<label for="usuario">Usuario</label>
-			<input type="text" id="usuario" name="usuario" value=""
+			<input type="text" id="name" name="name" value=""
 				size="60" maxlength="255" class="form-text required" />
 
 						<label for="usuario">Apellidos</label>
