@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>CarPoolGalicia</title>
+	<title>phonegap & jquery mobile starter</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
 	<link rel="stylesheet"  href="css/jquery.mobile.structure.css" />
 	<link rel="stylesheet" href="css/jquery.mobile.theme.css" />
@@ -22,24 +22,12 @@
 		} else {
 			var mobile_system = '';
 		}
-
-
-
 	</script>
 	<script src="js/lib/jquery.js"></script>
 	<!-- your scripts here -->
 	<script src="js/app/app.js"></script>
 	<script src="js/app/bootstrap.js"></script>
 	<script src="js/lib/jquery.mobile.js"></script>
-
-	<script>
-		$(document).ready(function(){
-			$("#btnRegistro").click(function(){
-				window.location = 'registro.html';
-			});
-		});
-	</script>
-
 </head>
 <body>
 	<div data-role="page">
@@ -48,16 +36,21 @@
 		</div>
 		<div data-role="content">
 			
-			<label for="usuario">Usuario</label>
+			<label for="usuario">Nombre de usuario</label>
 			<input type="text" id="usuario" name="usuario" value=""
 				size="60" maxlength="255" class="form-text required" />
-					
+			
+			<label for="email">Correo electrónico</label>
+			<input type="text" id="email" name="email" value=""
+				size="60" maxlength="255" class="form-text required" />
+			
+
 			<label for="password">Contraseña</label>
 			<input type="password" id="password" name="password"
 				value="" size="60" maxlength="255" class="form-text required" />
 			
-			<input type="submit" id="btnEntrar" value="Acceder" data-inline="true" data-mini="true" />
-			<input type="submit" id="btnRegistro" value="Nueva cuenta" data-inline="true" data-mini="true" />
+			<input type="submit" id="btnCrear" value="Crear" data-inline="true" data-mini="true" />
+			<input type="submit" id="btnCancelar" value="Cancelar" data-inline="true" data-mini="true" />
 
 		</div>
 		<div data-role="footer" data-theme="c">
