@@ -12,6 +12,7 @@
       <th>Conductor</th>
       <th>Plazas</th>
       <th>Disponibles</th>
+      <th>Coste Medio</th>
       <% if current_user %>
         <th>Unete</th>
       <% end %>
@@ -27,10 +28,11 @@
         <td><%= carpool.driver.email %></td>
         <td><%= carpool.seats %></td>
         <td><%= carpool.seats_available %></td>
+        <td><%= carpool.cost %></td>
         <% if current_user %>
           <td>
             <% if carpool.is_compleate? %>
-              <%= link_to "Unete!", join_carpool_path(carpool) %>
+              <%= link_to "Unete!", join_carpool_path(carpool), :class => "btn btn-success" %>
             <% else %>
               Lleno
             <% end %>

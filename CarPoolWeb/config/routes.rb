@@ -24,7 +24,7 @@ CarPoolWeb::Application.routes.draw do
   resource :user
   root :to => "home#index"  
   match '/travelers' => 'home#travelers', :as => :travelers
-  
+  match '/bb_mobile' => 'home#mobile', :as => :mobile
   resources :carpools do
     member do
       get :join

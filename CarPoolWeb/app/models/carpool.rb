@@ -24,6 +24,6 @@ class Carpool < ActiveRecord::Base
   end
   
   def cost
-    
+    (rand(10) * 1.50) / seats
   end
 end
