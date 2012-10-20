@@ -40,7 +40,12 @@
 	 		console.log("Index.html  - init");
 
 			var usuario = $.cookie("usuario");
+			console.log("Usuario = ." + usuario + ".");
 			$("#usuario").val(usuario);
+			if (usuario != 'undefined' && usuario != ""){
+				console.log("Cargando home para " + usuario);
+				$.mobile.changePage("#home");
+			}
 
 			$("#btnRegistro").click(function(){
 				$.mobile.changePage( "registro.html", { transition: "slideup"}, true, true)
@@ -83,9 +88,8 @@
 	<div data-role="page" id="home">
 		<!-- header -->
 		<div data-role="header">
-			<a href="index.html" data-icon="home">Inicio</a>
 			<h1>CarPoolGalicia</h1>
-			<a href="ajustes.html" data-icon="gear" data-iconpos="right" rel="external">Ajustes</a>
+			<a href="ajustes.html" data-icon="gear" data-iconpos="right" rel="external" class="ui-btn-right">Ajustes</a>
 		</div>
 		<!-- /header -->
 		<div data-role="content">

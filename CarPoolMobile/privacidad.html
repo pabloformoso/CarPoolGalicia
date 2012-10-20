@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CarPoolGalicia</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+	<link rel="stylesheet"  href="css/jquery.mobile.structure.css" />
+	<link rel="stylesheet" href="css/jquery.mobile.theme.css" />
+	<link rel="stylesheet" href="css/application.css" />
+	<script>
+		var userAgent = navigator.userAgent + '';
+		if (userAgent.indexOf('iPhone') > -1) {
+			document.write('<script src="js/lib/cordova-iphone.js"></sc' + 'ript>');
+			document.write('<script src="js/app/ios.js"></sc' + 'ript>');
+			document.write('<link rel="stylesheet" href="css/ios.css" />');
+			var mobile_system = 'iphone';
+		} else if (userAgent.indexOf('Android') > -1) {
+			document.write('<script src="js/lib/cordova-android.js"></sc' + 'ript>');
+			document.write('<script src="js/app/android.js"></sc' + 'ript>');
+			document.write('<link rel="stylesheet" href="css/android.css" />');
+			var mobile_system = 'android';
+		} else {
+			var mobile_system = '';
+		}
+
+
+
+	</script>
+	<script src="js/lib/jquery.js"></script>
+	<!-- your scripts here -->
+	<script src="js/app/app.js"></script>
+	<script src="js/app/bootstrap.js"></script>
+	<script src="js/lib/jquery.mobile.js"></script>
+	<script src="js/lib/jquery.cookie.js"></script>
+
+	<script>
+
+	 	$(document).bind('pageinit', function(){
+
+			console.log("Ajustes init");
+
+			$("#btnOlvidar").click(function(){
+				console.log("Olvidar...");
+				$.cookie("usuario", "");
+				window.location.href = "index.html";
+			});
+		});
+	</script>
+
+</head>
+<body>
+	<!-- login -->
+	<div data-role="page">
+		<div data-role="header">
+			<a href="index.html" data-icon="home" rel="external">Inicio</a>
+			<h1>CarPoolGalicia</h1>
+		</div>
+		<div data-role="content">
+			<h3>Política de Privacidad</h3>
+			<ol>
+				<li>CarPoolGalicia no intenta tener acceso de ningún tipo a los datos personales de los usuarios, salvo a aquellos datos que el mismo usuario suministre libremente y por propia voluntad.</li>
+<li>Cuando los usuarios suministren información personal a CarPoolGalicia para poder utilizar cualquiera de sus servicios, esta información sólo será utilizada para optimizar nuestro sitio en función de las necesidades de los usuarios, con el permanente objetivo de mejorar los servicios y productos que nuestra empresa ofrece.</li>
+<li>La información brindada libremente por el usuario puede ser utilizada para comunicarse con él mismo, por el staff de CarPoolGalicia </li>
+<li>CarPoolGalicia se compromete a no utilizar los datos personales de los usuarios para comercializarlos con terceros. Su política restringe el uso de estos datos a brindar información genérica y global sobre los mismos, con el límite expreso de confidencialidad que determina no divulgar de modo alguno ningún dato personal.</li>
+<li>CarPoolGalicia se compromete a adoptar una política de confidencialidad y protección de datos, a efecto de proteger la privacidad de la información personal obtenida a través de este Web Site y del uso del correo electrónico.</li>
+<li>CarPoolGalicia no sea hace responsable por cualquier violación a la confidencialidad que en el uso de datos personales pudieran incurrir los propios usuarios o terceros ajenos a la empresa.</li>
+<li>El único responsable de mantener la confidencialidad de la palabra clave o password es el propio usuario, quien también puede cambiarla cuantas veces lo desee.</li>
+<li>CarPoolGalicia se reserva el derecho de modificar estas normas de su POLÍTICA DE PRIVACIDAD , a fin de adaptarlas a nuevos requerimientos en materia de legislación, jurisprudencia, técnica o cualquier otro motivo que le permitan mejorar los servicios y contenidos que ofrece. Por este motivo, aconsejamos revisar periódicamente estas normas.</li>
+</ol>
+Ante cualquier duda sobre este acuerdo de confidencialidad, no dude en ponerse en contacto con CarPoolGalicia, escribiéndonos por correo electrónico.
+
+		</div>
+		<div data-role="footer" data-theme="c" data-position="fixed">
+			<h4>&copy; 2012 - CarPoolGalicia</h4>
+		</div>	
+	</div><!-- /login -->
+
+</body>
+</html>
