@@ -10,4 +10,14 @@ class User < ActiveRecord::Base
   
   belongs_to :driver, :class_name => "Carpool", :foreign_key => "driver_id"
   has_and_belongs_to_many :carpools
+  
+  def number_of_pools
+    number = 0
+    for cp in carpools do
+      if cp.departure > Time.zone.now
+        number += 1
+      end
+    end
+    number
+  end
 end

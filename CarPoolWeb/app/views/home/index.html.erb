@@ -30,7 +30,7 @@
         <% if current_user %>
           <td>
             <% if carpool.is_compleate? %>
-              <%= link_to "Unete!", "" %>
+              <%= link_to "Unete!", join_carpool_path(carpool) %>
             <% else %>
               Lleno
             <% end %>
