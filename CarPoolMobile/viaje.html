@@ -31,33 +31,57 @@
 	<script src="js/app/app.js"></script>
 	<script src="js/app/bootstrap.js"></script>
 	<script src="js/lib/jquery.mobile.js"></script>
-
+	<script src="js/jqueryui-map.js"></script>	
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 	<script>
-		$(document).ready(function(){
-			$("#btnRegistro").click(function(){
-				window.location = 'registro.html';
+	function cargaMapa() {
+	$('#map_canvas').gmap().bind('init', function() { 
+	console.log("gmap.init");
+
+	$.getJSON( 'http://127.0.0.1:9910/CarPoolGalicia/CarPoolMobile/markers.json', function(data) { 
+		console.log("console.log");
+		$.each( data.markers, function(i, marker) {
+			$('#map_canvas').gmap('addMarker', { 
+				'position': new google.maps.LatLng(marker.latitude, marker.longitude), 
+				'bounds': true 
+			}).click(function() {
+				console.log('Hago click');
+				$('#map_canvas').gmap('openInfoWindow', { 'content': marker.content }, this);
 			});
 		});
+	});
+	});
+	}
+	$(document).bind('pageinit',function(){
+		$('#map_canvas').css('height','200px');
+	 	cargaMapa();
+		$("#unirse").click(function(){
+			window.location = 'index.html';
+		});	
+	});
 	</script>
 
 </head>
 <body>
 	<div data-role="page">
 		<div data-role="header">
-			<a href="index.html" data-icon="home" data-mini="true">Home</a>
-			<h1>Viaje</h1>
+			<a href="index.html" data-icon="back" data-mini="true" rel="external">Volver</a>
+			<h1>Volver</h1>
 		</div>
 		<div data-role="content">
 			
 			<label><h1>A Coruña</h1></label>
 			<label><p>Desde Santiago de compostela</p></label>
 			<label><p>El 13/3/12 a las 16:00 </p></label>
-			<ul data-role="listview" data-inset="true">
-				<li><a href="#"><img src="img/prueb.jpeg" /><h1>Nombre</h1><p>Conductor<p></a></li>
-				<li><a href="#"><img src="img/prueb.jpeg" /><h1>Nombre 2</h1><p>Acompañante<p></a></a></li>
+			<div class="item rounded dark">
+				<div id="map_canvas" style="width:95%;" class="map rounded"></div>
+			</div>
+			<ul data-role="listview" data-inset="true" id="lista">
+				<li><a href="#"><img class="img-perfil" src="img/prueb.jpeg" rel="external"/><h1>Nombre</h1><p>Conductor<p></a></li>
+				<li><a href="#"><img class="img-perfil" src="img/prueb.jpeg" rel="external" /><h1>Nombre 2</h1><p>Acompañante<p></a></a></li>
 			</ul>
 			
-			<input type="submit" data-icon="plus" id="anhadir" value="Unirse al viaje" data-iconpos="right"/>
+			<input type="submit" data-icon="plus" id="unirse" value="Unirse al viaje" data-iconpos="right" rel="external"/>
 
 		</div>
         <div data-role="footer" data-theme="c" data-position="fixed">
