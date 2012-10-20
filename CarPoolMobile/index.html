@@ -37,11 +37,17 @@
 			$("#btnRegistro").click(function(){
 				window.location = 'registro.html';
 			});
+
+			$("#btnEntrar").click(function(){
+				console.log("Aquí irá la llamada al backend - servicio de login");
+				$.mobile.changePage("#home");
+			});
 		});
 	</script>
 
 </head>
 <body>
+	<!-- login -->
 	<div data-role="page">
 		<div data-role="header">
 			<h1>CarPoolGalicia</h1>
@@ -60,9 +66,41 @@
 			<input type="submit" id="btnRegistro" value="Nueva cuenta" data-inline="true" data-mini="true" />
 
 		</div>
-		<div data-role="footer" data-theme="c">
+		<div data-role="footer" data-theme="c" data-position="fixed">
 			<h4>&copy; 2012 - CarPoolGalicia</h4>
 		</div>	
-	</div><!-- /page -->
+	</div><!-- /login -->
+	<!-- inicio -->
+	<div data-role="page" id="home">
+		<!-- header -->
+		<div data-role="header">
+			<a href="index.html" data-icon="home">Inicio</a>
+			<h1>CarPoolGalicia</h1>
+			<a href="ajustes.html" data-icon="check" data-iconpos="right">Ajustes</a>
+		</div>
+		<!-- /header -->
+		<div data-role="content">
+			<div>
+				Bienvenido a <strong>CarPoolGalicia</strong>. Gestiona tus pools o únete a uno.
+			</div>
+
+			<div id="divBotonesPool" data-role="controlgroup" data-type="horizontal">
+				<a href="index.html" data-role="button" data-icon="plus">Añadir un pool</a>
+				<a href="index.html" data-role="button" data-icon="arrow-r">Gestionar mis pools</a>				
+			</div>
+
+			<h3>Pools más recientes</h3>
+			<div id="divListview">
+				<ul data-role="listview" data-inset="true">
+					<li><a href="#">Pool 1</a></li>
+					<li><a href="#">Pool 2</a></li>
+					<li><a href="#">Pool 3</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- /content -->
+	</div>
+
+
 </body>
 </html>
