@@ -46,10 +46,10 @@
 		$('#password_confirmation').val($('password').val());
 		$.ajax({
   		type: "POST",
-  		url: "http://192.168.11.100:3000/api/users/",
-  		data: { 'user[name]': $('#name').val(), 'user[city]':$('#city').val(), 'user[password]':$('#password').val(),'user[password_confirmation]':$('#password_confirmation').val(),'user[lastname]':$('#lastname').val(),'user[phone_number]':$('#phone_number').val(), 'user[email]':$('#email').val() }
+  		url: "http://192.168.11.100:3000/api/users",
+  		data: { 'user[name]': $('#name').val(), 'user[city]':$('#city').val(), 'user[password]':$('#password').val(),'user[password_confirmation]':$('#password').val(),'user[lastname]':$('#lastname').val(),'user[phone_number]':$('#phone_number').val(), 'user[email]':$('#email').val() }
 		}).done(function( msg ) {
-  			alert( "Data Saved: " + msg );
+  			alert( "Bienvenido: " + $('#name').val());
 });
 
 	}
@@ -59,13 +59,18 @@
 <body>
 	<div data-role="page">
 		<div data-role="header">
+			<a href="index.html" data-icon="home" rel="external">Inicio</a>
 			<h1>Registros</h1>
 		</div>
-		<form id="datosregistro" action="http://192.168.11.100:3000/api/users/">
+		<form id="datosregistro" action="http://192.168.11.100:3000/api/user">
 		<div data-role="content">
 			
 			<label for="usuario">Usuario</label>
 			<input type="text" id="usuario" name="usuario" value=""
+				size="60" maxlength="255" class="form-text required" />
+
+						<label for="usuario">Apellidos</label>
+				<input type="text" id="lastname" name="lastname" value=""
 				size="60" maxlength="255" class="form-text required" />
 					
 			<label for="password">Contraseña</label>
@@ -74,14 +79,6 @@
 
 				<input type="hidden" id="password_confirmation" name="password_confirmation"
 				value="" size="60" maxlength="255" class="form-text required" />
-
-				<label for="usuario">Nombre</label>
-				<input type="text" id="name" name="name" value=""
-				size="60" maxlength="255" class="form-text required" />
-
-				<label for="usuario">Apellidos</label>
-				<input type="text" id="lastname" name="lastname" value=""
-				size="60" maxlength="255" class="form-text required" />
 
 				<label for="usuario">E-Mail</label>
 				<input type="text" id="email" name="email" value=""
