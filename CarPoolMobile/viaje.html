@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CarPoolGalicia</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+	<link rel="stylesheet"  href="css/jquery.mobile.structure.css" />
+	<link rel="stylesheet" href="css/jquery.mobile.theme.css" />
+	<link rel="stylesheet" href="css/application.css" />
+	<script>
+		var userAgent = navigator.userAgent + '';
+		if (userAgent.indexOf('iPhone') > -1) {
+			document.write('<script src="js/lib/cordova-iphone.js"></sc' + 'ript>');
+			document.write('<script src="js/app/ios.js"></sc' + 'ript>');
+			document.write('<link rel="stylesheet" href="css/ios.css" />');
+			var mobile_system = 'iphone';
+		} else if (userAgent.indexOf('Android') > -1) {
+			document.write('<script src="js/lib/cordova-android.js"></sc' + 'ript>');
+			document.write('<script src="js/app/android.js"></sc' + 'ript>');
+			document.write('<link rel="stylesheet" href="css/android.css" />');
+			var mobile_system = 'android';
+		} else {
+			var mobile_system = '';
+		}
+
+
+
+	</script>
+	<script src="js/lib/jquery.js"></script>
+	<!-- your scripts here -->
+	<script src="js/app/app.js"></script>
+	<script src="js/app/bootstrap.js"></script>
+	<script src="js/lib/jquery.mobile.js"></script>
+
+	<script>
+		$(document).ready(function(){
+			$("#btnRegistro").click(function(){
+				window.location = 'registro.html';
+			});
+		});
+	</script>
+
+</head>
+<body>
+	<div data-role="page">
+		<div data-role="header">
+			<a href="index.html" data-icon="home" data-mini="true">Home</a>
+			<h1>Viaje</h1>
+		</div>
+		<div data-role="content">
+			
+			<label><h1>A Coruña</h1></label>
+			<label><p>Desde Santiago de compostela</p></label>
+			<label><p>El 13/3/12 a las 16:00 </p></label>
+			<ul data-role="listview" data-inset="true">
+				<li><a href="#"><img src="img/prueb.jpeg" /><h1>Nombre</h1><p>Conductor<p></a></li>
+				<li><a href="#"><img src="img/prueb.jpeg" /><h1>Nombre 2</h1><p>Acompañante<p></a></a></li>
+			</ul>
+			
+			<input type="submit" data-icon="plus" id="anhadir" value="Unirse al viaje" data-iconpos="right"/>
+
+		</div>
+        <div data-role="footer" data-theme="c" data-position="fixed">
+			<h4>&copy; 2012 - CarPoolGalicia</h4>
+		</div>	
+	</div><!-- /page -->
+</body>
+</html>
