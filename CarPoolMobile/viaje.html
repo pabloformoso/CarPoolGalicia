@@ -33,7 +33,7 @@
 	<script>
 	function cargarDatos(){
 		console.log('Cargando json');
-		$.getJSON('http://192.168.11.100:3000/api/pool/'+1, function(data) {
+		$.getJSON('http://192.168.11.100:3000/api/pool/'+2, function(data) {
 			//Obtenemos el origen y destino y lo indicamos en el mapa
 			$('#map_canvas').gmap('displayDirections', { 'origin': data.start_address, 'destination': data.destination_address, 'travelMode': google.maps.DirectionsTravelMode.DRIVING }, { 'panel': null }, function(result, status) {
             
@@ -48,6 +48,11 @@
 				$("#lista").append('<li><a href="'+"#"+'"><img class="img-perfil" src="'+"img/prueb.jpeg"+'"/> <h1>'+user.email+'</h1><p>Acompañante</p></a></li>');
 			});
 			$("#lista").listview('refresh');
+			if(data.seats_available==0) {
+				$('[type="submit"]').button('disable');	
+				$('[type="submit"]').val('¡No hay sitio!');
+				$('[type="submit"]').button('refresh');
+			}
 			
 		});
 	}
@@ -76,7 +81,11 @@
 		$('#map_canvas').css('height','200px');
 		cargarDatos(); 		 	
 		$("#unirse").click(function(){
-			window.location = 'index.html';
+			console.log("click unirse");
+			$.get("http://192.168.11.100:3000/api/pool/join?user_id=3&pool_id=2", function(data, textStatus) {
+				console.log("Recibido: " + data);
+				window.location = 'viaje.html';
+			});
 		});	
 	});
 	</script>
@@ -86,7 +95,7 @@
 	<div data-role="page">
 		<div data-role="header">
 			<a href="index.html" data-icon="back" data-mini="true" rel="external">Volver</a>
-			<h1>Volver</h1>
+			<h1>Viaje</h1>
 		</div>
 		<div data-role="content">
 			<div id="contenido"></div>
@@ -95,7 +104,7 @@
 			</div>
 			<ul data-role="listview" data-inset="true" id="lista"></ul>
 			
-			<input type="submit" data-icon="plus" id="unirse" value="Unirse al viaje" data-iconpos="right" rel="external"/>
+			<input type="submit" data-icon="plus" id="unirse" value="Unirse al viaje" data-iconpos="right"/>
 
 		</div>
         <div data-role="footer" data-theme="c" data-position="fixed">

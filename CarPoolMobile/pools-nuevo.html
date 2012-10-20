@@ -34,6 +34,22 @@
 	<script src="js/jqueryui-map.js"></script>	
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 	<script>
+	function enviaFormulario() {
+		console.log("enviando formulario");
+		$.ajax({
+  		"type": "GET",
+  		"url": "http://192.168.11.100:3000/api/pool/create",
+  		"data": {'carpool[start_address]': $('#origen').val(),
+  				'carpool[destination_address]':$('#destino').val(),
+  				'carpool[driver_id]':'1',
+  				'carpool[departure]': new Date(), 
+  				'carpool[seats]':$('#asientos').val() 
+  			}
+		}).success(function( msg ) {			
+  			window.location = 'index.html';	
+		});
+	}
+	
 	function cargaMapa() {
 		console.log('cargando mapa');
 		$('#map_canvas').gmap({ 'center': '42.345573,-71.098326' });
@@ -70,9 +86,6 @@
         });
 		}
 	}
-
-	</script>
-	<script>
 	$(document).bind("pageinit", function() {
 			$('#origen').blur(function() {
   				anhadePincho($('#origen').val(),'origen');
@@ -88,6 +101,7 @@
 
 			$("#btnCrear").click(function(){
 				console.log("Crear...");
+				enviaFormulario();
 			});
 			cargaMapa();
 		});
@@ -109,9 +123,11 @@
 				size="60" maxlength="255" class="form-text required" />
 					
 			<label for="destino">Destino</label>
-			<input type="text" id="destino" name="destino"
-				value="" size="60" maxlength="255" class="form-text required" />
-			
+			<input type="text" id="destino" name="destino" value="" size="60" maxlength="255" class="form-text required" />
+
+			<label for="asientos">Número de asientos</label>
+			<input type="number" id="asientos" name="asientos"/>
+
 			<div id="container" style="width:100%;height:200px;">
 			<div class="item rounded dark">
 				<div id="map_canvas" style="width:100%;height:200px;" class="map rounded"></div>
