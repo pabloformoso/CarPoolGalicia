@@ -31,15 +31,24 @@
 	<script src="js/app/app.js"></script>
 	<script src="js/app/bootstrap.js"></script>
 	<script src="js/lib/jquery.mobile.js"></script>
+	<script src="js/lib/jquery.cookie.js"></script>
+	<script src="js/lib/json2.js"></script>
 
 	<script>
-		$(document).ready(function(){
+	 	$(document).bind('pageinit', function(){
+
+	 		console.log("Index.html  - init");
+
+			var usuario = $.cookie("usuario");
+			$("#usuario").val(usuario);
+
 			$("#btnRegistro").click(function(){
-				window.location = 'registro.html';
+				$.mobile.changePage( "registro.html", { transition: "slideup"}, true, true)
 			});
 
 			$("#btnEntrar").click(function(){
 				console.log("Aquí irá la llamada al backend - servicio de login");
+				$.cookie("usuario", $("#usuario").val());
 				$.mobile.changePage("#home");
 			});
 		});
@@ -76,7 +85,7 @@
 		<div data-role="header">
 			<a href="index.html" data-icon="home">Inicio</a>
 			<h1>CarPoolGalicia</h1>
-			<a href="ajustes.html" data-icon="check" data-iconpos="right">Ajustes</a>
+			<a href="ajustes.html" data-icon="gear" data-iconpos="right" rel="external">Ajustes</a>
 		</div>
 		<!-- /header -->
 		<div data-role="content">
@@ -85,20 +94,23 @@
 			</div>
 
 			<div id="divBotonesPool" data-role="controlgroup" data-type="horizontal">
-				<a href="index.html" data-role="button" data-icon="plus">Añadir un pool</a>
-				<a href="index.html" data-role="button" data-icon="arrow-r">Gestionar mis pools</a>				
+				<a href="pools-nuevo.html" data-role="button" data-icon="plus">Añadir un pool</a>
+				<a href="pools-gestionar.html" data-role="button" data-icon="arrow-r">Gestionar mis pools</a>				
 			</div>
 
 			<h3>Pools más recientes</h3>
 			<div id="divListview">
 				<ul data-role="listview" data-inset="true">
-					<li><a href="#">Pool 1</a></li>
-					<li><a href="#">Pool 2</a></li>
-					<li><a href="#">Pool 3</a></li>
+					<li><a href="viaje.html" rel="external">Pool 1</a></li>
+					<li><a href="viaje.html" rel="external">Pool 2</a></li>
+					<li><a href="viaje.html" rel="external">Pool 3</a></li>
 				</ul>
 			</div>
 		</div>
 		<!-- /content -->
+		<div data-role="footer" data-theme="c" data-position="fixed">
+			<h4>&copy; 2012 - CarPoolGalicia</h4>
+		</div>
 	</div>
 
 
