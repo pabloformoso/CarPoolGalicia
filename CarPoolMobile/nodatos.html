@@ -58,18 +58,9 @@
 					$.cookie("usuario", $("#usuario").val());
 					$.mobile.changePage("#home");
 				}else{
-					alert('Debes introducir tu nombre de usuario y contraseña');
+					$('#sinDatos').trigger('click');
 				}
 			});
-
-		$.getJSON('http://192.168.11.100:3000/api/pools', function(data) {
-			console.log("Recibidos pools");
-			$.each(data, function(i, pool){
-				$("#listadoPools").append('<li><a href="viaje.html" rel="external">'+pool.start_address + " - " + pool.destination_address+'</a></li>');	
-			});
-			$('#listadoPools').listview('refresh');
-		});
-
 		});
 	</script>
 
@@ -109,17 +100,19 @@
 		<div data-role="content">
 			<div>
 				Bienvenido a <strong>CarPoolGalicia</strong>. Gestiona tus pools o únete a uno.
-				<br/>
 			</div>
 
-			<div id="divBotonesPool" data-role="controlgroup" data-type="horizontal" style="width: 100%">
-				<a href="pools-nuevo.html" data-role="button" data-icon="plus" rel="external">Añadir un pool</a>
-				<a href="pools-gestionar.html" data-role="button" data-icon="arrow-r" rel="external">Gestionar mis pools</a>				
+			<div id="divBotonesPool" data-role="controlgroup" data-type="horizontal">
+				<a href="pools-nuevo.html" data-role="button" data-icon="plus">Añadir un pool</a>
+				<a href="pools-gestionar.html" data-role="button" data-icon="arrow-r">Gestionar mis pools</a>				
 			</div>
 
 			<h3>Pools más recientes</h3>
 			<div id="divListview">
-				<ul id="listadoPools" data-role="listview" data-inset="true">
+				<ul data-role="listview" data-inset="true">
+					<li><a href="viaje.html" rel="external">Pool 1</a></li>
+					<li><a href="viaje.html" rel="external">Pool 2</a></li>
+					<li><a href="viaje.html" rel="external">Pool 3</a></li>
 				</ul>
 			</div>
 		</div>
