@@ -1,0 +1,105 @@
+<!--
+	jQuery Mobile Starter
+	/snippets/grids.html
+-->
+<!doctype html>
+<html>
+<head>
+	<title> PhoneGap & jQuery Mobile Starter - Grids</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet"  href="../css/jquery.mobile.structure.css" />
+  <link rel="stylesheet" href="../css/jquery.mobile.theme.css" />
+  <link rel="stylesheet" href="../css/application.css" />
+
+  <script>
+    var userAgent = navigator.userAgent + '';
+    if (userAgent.indexOf('iPhone') > -1) {
+      document.write('<script src="../js/lib/cordova-iphone.js"></sc' + 'ript>');
+      var mobile_system = 'iphone';
+    } else if (userAgent.indexOf('Android') > -1) {
+      document.write('<script src="../js/lib/cordova-android.js"></sc' + 'ript>');
+      var mobile_system = 'android';
+    } else {
+      var mobile_system = '';
+    }
+  </script>
+  
+  <script src="../js/lib/jquery.js"></script>
+  <!-- your scripts here -->
+  <script src="../js/app/app.js"></script>
+  <script src="../js/app/bootstrap.js"></script>
+  <script src="../js/lib/jquery.mobile.js"></script>
+</head> 
+<body> 
+	<div data-role="page">
+
+		<div data-role="header">
+			<a href="../index.html" data-icon="home">Home</a>
+			<h1>Grids</h1>
+		</div>
+
+		<div data-role="content">
+
+
+
+
+
+<h2>2 Column Grid</h2>
+
+<div class="ui-grid-a">
+	<div class="ui-block-a"><button type="submit" data-theme="c">Cancel</button></div>
+	<div class="ui-block-b"><button type="submit" data-theme="b">Submit</button></div>	   
+</div>
+
+<h2>3 Column Grid</h2>
+
+<div class="ui-grid-b">
+	<div class="ui-block-a ui-bar-d" style="height:50px">Block A</div>
+	<div class="ui-block-b ui-bar-d" style="height:50px">Block B</div>
+	<div class="ui-block-c ui-bar-d" style="height:50px">Block C</div>
+</div>
+
+<h2>4 Column Grid</h2>
+
+<div class="ui-grid-c">
+	<div class="ui-block-a ui-bar-d" style="height:50px">Block A</div>
+	<div class="ui-block-b ui-bar-d" style="height:50px">Block B</div>
+	<div class="ui-block-c ui-bar-d" style="height:50px">Block C</div>
+	<div class="ui-block-d ui-bar-d" style="height:50px">Block D</div>
+</div>
+
+<h2>5 Column Grid</h2>
+
+<div class="ui-grid-d">
+	<div class="ui-block-a ui-bar-d" style="height:50px">A</div>
+	<div class="ui-block-b ui-bar-d" style="height:50px">B</div>
+	<div class="ui-block-c ui-bar-d" style="height:50px">C</div>
+	<div class="ui-block-d ui-bar-d" style="height:50px">D</div>
+	<div class="ui-block-e ui-bar-d" style="height:50px">E</div>
+</div>
+
+<h2>Multi-row grids</h2>
+
+<div class="ui-grid-a">
+	<div class="ui-block-a ui-bar-d" style="height:50px">A</div>
+	<div class="ui-block-b ui-bar-d" style="height:50px">B</div>
+	<div class="ui-block-a ui-bar-d" style="height:50px">A</div>
+	<div class="ui-block-b ui-bar-d" style="height:50px">B</div>
+</div>
+
+
+
+
+
+		</div>
+		
+		<div data-role="footer" data-theme="c">
+			<p>&copy; 2012 - jQuery Mobile Starter</p>
+		</div>	
+		
+	</div>
+</body>
+</html>
