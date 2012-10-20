@@ -1,7 +1,8 @@
 require 'api_constraints'
 
 CarPoolWeb::Application.routes.draw do
-  resources :carpools
+  resources :carpools do
+    memeber
 
   devise_for :users
   
@@ -24,4 +25,5 @@ CarPoolWeb::Application.routes.draw do
   
   resource :user
   root :to => "home#index"  
+  match 'travelers' => 'home#travelers', :as => :travelers
 end

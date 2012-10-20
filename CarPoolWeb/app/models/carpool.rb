@@ -23,4 +23,7 @@ class Carpool < ActiveRecord::Base
     end
   end
   
+  def cost
+    
+  end
 end

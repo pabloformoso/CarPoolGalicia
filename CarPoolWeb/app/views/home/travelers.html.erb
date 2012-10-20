@@ -1,0 +1,22 @@
+<h2>Travelers :)</h2>
+<br />
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Teléfono</th>
+      <th>Ciudad</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= "#{user.name} #{user.lastname}" %></td>
+        <td><%= user.email %></td>
+        <td><%= user.phone_number %></td>
+        <td><%= user.city %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -12,7 +12,7 @@ module Api
               :include_root_in_json => :false
           )
         else
-          respond_with "{error: 1, message: 'Not pools found'}"
+          respond_with '{"error": 1, "message": "Not pools found"}'
         end      
 
       end
@@ -27,7 +27,7 @@ module Api
             :include_root_in_json => :false
           )
         else
-          respond_with "{error: 1, message: 'Pool not found'}"
+          respond_with '{"error": 1, "message": "Pool not found"}'
         end
       end
       
@@ -42,7 +42,7 @@ module Api
             :include_root_in_json => :false
           )
         else
-          respond_with "{error: 1, message: 'Not pools found'}"
+          respond_with '{"error": 1, "message": "Not pools found"}'
         end
       end
       
@@ -52,7 +52,7 @@ module Api
         pool = Carpool.find params[:pool_id]
         
         if !pool
-          respond_with "{error: 1, message: 'Not pools found'}"
+          respond_with '{"error": 1, "message": "Not pools found"}'
           return
         end
         
@@ -65,10 +65,10 @@ module Api
               :include_root_in_json => :false
             )
           else
-            respond_with "{error: 1, message: 'Not addeded to the pool'}"
+            respond_with '{"error": 1, "message": "Not addeded to the pool"}'
           end
         else
-          respond_with "{error: 1, message: 'Carpool is full'}"
+          respond_with '{"error": 1, "message": "Car is full"}'
         end
       end
       
@@ -81,7 +81,7 @@ module Api
             :include_root_in_json => :false
           )
         else
-          respond_with "{error: 1, message: 'Pool not created'}"
+          respond_with '{"error": 1, "message": "Pool not created"}'
         end
       end
       
@@ -94,7 +94,7 @@ module Api
               :include_root_in_json => :false
           )
         else
-          respond_with "{error: 1, message: 'Not pools found'}"
+          respond_with '{"error": 1, "message": "Not pools found"}'
         end
       end
     end
