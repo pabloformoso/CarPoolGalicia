@@ -65,7 +65,7 @@
 		$.mobile.showPageLoadingMsg("a", "Cargando...");
 		$.getJSON('http://192.168.11.100:3000/api/pools', function(data) {
 			console.log("Recibidos pools");
-			$("#listadoPools").remove('li');
+			$("#listadoPools li").remove();
 			$.each(data, function(i, pool){
 				$("#listadoPools").append('<li><a href="viaje.html" rel="external">'+pool.start_address + " - " + pool.destination_address+'</a></li>');	
 			});
@@ -115,9 +115,9 @@
 				<br/>
 			</div>
 
-			<div id="divBotonesPool" data-role="controlgroup" data-type="horizontal" style="width: 100%">
-				<a href="pools-nuevo.html" data-role="button" data-icon="plus" rel="external">Añadir un pool</a>
-				<a href="pools-gestionar.html" data-role="button" data-icon="arrow-r" rel="external">Gestionar mis pools</a>				
+			<div id="divBotonesPool" data-role="controlgroup" data-type="horizontal" style="width: 100%" class="ui-grid-a" >
+				<a href="pools-nuevo.html" data-role="button" data-icon="plus" rel="external" class="ui-block-a" style="height: 39px">Añadir</a>
+				<a href="pools-gestionar.html" data-role="button" data-icon="arrow-r" rel="external" class="ui-block-b" style="height: 39px">Gestionar</a>				
 			</div>
 
 			<h3>Pools más recientes</h3>
