@@ -36,7 +36,11 @@
 
 			var propios = new Array();
 			var deOtros = new Array();
+
+
+			$.mobile.showPageLoadingMsg();
 			$.getJSON('http://192.168.11.100:3000/api/pool/user/' + idUsuario, function(data) { 
+				$.mobile.hidePageLoadingMsg()
 				if (data.error !== undefined) {
 					$('#cuerpo').html('<p>Parece que no has creado ni te has unido a ningún pool...</p>')
 					return;
