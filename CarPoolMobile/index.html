@@ -64,6 +64,7 @@
 
 		$.getJSON('http://192.168.11.100:3000/api/pools', function(data) {
 			console.log("Recibidos pools");
+			$("#listadoPools").delete('li');
 			$.each(data, function(i, pool){
 				$("#listadoPools").append('<li><a href="viaje.html" rel="external">'+pool.start_address + " - " + pool.destination_address+'</a></li>');	
 			});
