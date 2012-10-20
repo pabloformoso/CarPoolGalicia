@@ -74,6 +74,7 @@ module Api
       
       def create
         pool = Carpool.new(params[:carpool], without_protection: true)
+        pool.departure = Time.now + 1.hour
         if pool.save 
           respond_with pool.to_json(
             :include => {:users => {:only => [:id, :name, :lastname, :email]}},
