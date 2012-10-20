@@ -10,8 +10,9 @@ module Api
           render json: user.as_json(id: user.id, email: user.email), status: 201
           return
         else
+          puts user.errors
           warden.custom_failure!
-          render json: user.errors, status: 422
+          render json: user.errors
         end
       end
     end
